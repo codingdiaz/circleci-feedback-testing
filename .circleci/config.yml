@@ -26,6 +26,7 @@ jobs:
     steps:
       # specify any bash command here prefixed with `run: `
       - run: echo "Hello World"
+      - run: exit 2
 workflows:
   version: 2
   build_and_test:
