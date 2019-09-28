@@ -9,7 +9,7 @@ jobs:
     working_directory: /go/src/github.com/codingdiaz/circleci-feedback-testing
     steps:
       - checkout
-      - run: asdf
+      - run: asdfasdf
 #   test:
 #     docker:
 #       - image: circleci/golang:1.9
