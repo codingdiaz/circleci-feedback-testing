@@ -1,27 +1,14 @@
-# Golang CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
 jobs:
-  build:
+  test:
     docker:
-      - image: circleci/golang:1.9
+      - image: circleci/golang:1.12
     working_directory: /go/src/github.com/codingdiaz/circleci-feedback-testing
     steps:
       - checkout
-      - run: asdfasdf
-#   test:
-#     docker:
-#       - image: circleci/golang:1.9
-#     steps:
-#       # specify any bash command here prefixed with `run: `
-#       - run: echo "Hello World"
-#       - run: exit 2
-# workflows:
-#   version: 2
-#   build_and_test:
-#     jobs:
-#       - build
-#       - test:
-#           requires:
-#             - build
+      - run: make test
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
