@@ -9,6 +9,7 @@ jobs:
     working_directory: /go/src/github.com/codingdiaz/circleci-feedback-testing
     steps:
       - checkout
+      - run: sleep 30
 #   test:
 #     docker:
 #       - image: circleci/golang:1.9
