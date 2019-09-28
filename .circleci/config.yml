@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/golang:1.12
+    working_directory: /go/src/github.com/codingdiaz/circleci-feedback-testing
+    steps:
+      - checkout
+      - run: make test
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
