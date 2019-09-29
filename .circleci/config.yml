@@ -116,19 +116,19 @@ commands:
       - run:
           name: Run Task
           command: |
-            if [ -z "<<parameters.started-by>>" ]; then
+            if [ ! -z "<<parameters.started-by>>" ]; then
                 echo "Setting --started-by"
                 set -- "$@" --started-by "<<parameters.started-by>>"
             fi
-            if [ -z "<<parameters.group>>" ]; then
+            if [ ! -z "<<parameters.group>>" ]; then
                 echo "Setting --group"
                 set -- "$@" --group "<<parameters.group>>"
             fi
-            if [ -z "<<parameters.placement-constraints>>" ]; then
+            if [ ! -z "<<parameters.placement-constraints>>" ]; then
                 echo "Setting --placement-constraints"
                 set -- "$@" --group "<<parameters.placement-constraints>>"
             fi
-            if [ -z "<parameters.placement-strategy>>" ]; then
+            if [ ! -z "<parameters.placement-strategy>>" ]; then
                 echo "Setting --placement-strategy"
                 set -- "$@" --group "<parameters.placement-strategy>>"
             fi
@@ -140,8 +140,6 @@ commands:
                 echo "Setting --propagate-tags"
                 set -- "$@" --propagate-tags "TASK_DEFINITION"
             fi
-
-            echo "@"
 
             aws ecs run-task \
               --cluster <<parameters.cluster>> \
