@@ -126,12 +126,13 @@ commands:
             # fi
             # if [ ! -z "<<parameters.placement-constraints>>" ]; then
             #     echo "Setting --placement-constraints"
-            #     set -- "$@" --group "<<parameters.placement-constraints>>"
+            #     set -- "$@" --placement-constraints "<<parameters.placement-constraints>>"
             # fi
             # if [ ! -z "<parameters.placement-strategy>>" ]; then
             #     echo "Setting --placement-strategy"
-            #     set -- "$@" --group "<parameters.placement-strategy>>"
+            #     set -- "$@" --placement-strategy "<parameters.placement-strategy>>"
             # fi
+            echo <<parameters.enable-ecs-managed-tags>>
             if [ "<parameters.enable-ecs-managed-tags>>" = "true" ]; then
                 echo "Setting --enable-ecs-managed-tags"
                 set -- "$@" --enable-ecs-managed-tags
