@@ -161,11 +161,14 @@ jobs:
       - run:
           name: run-task
           command: |
-            aws ecs run-task 
+            aws ecs run-task \
               --cluster testing \
               --task-definition orb \
               --network-configuration awsvpcConfiguration="{subnets=[subnet-70ffa93b,subnet-bcc04b93],securityGroups=[],assignPublicIp=DISABLED}"  \
               --launch-type FARGATE
+      - run-task:
+          task-definition: orb
+          cluster-name: testing
 workflows:
   version: 2
   run-task:
