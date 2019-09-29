@@ -67,15 +67,12 @@ commands:
           specified for tasks using the Fargate launch type."
         type: string
         default: "LATEST"
-      # network-configuration:
-      #   description: |
-      #     The network  configuration for the task. This parameter is required
-      #     for task definitions that use the awsvpc network mode to receive
-      #     their own elastic network interface, and it is not supported for
-      #     other network modes. For more information, see Task Networking  in
-      #     the Amazon Elastic Container Service Developer Guide .
-      #   type: string
-      #   default: ""
+      awsvpc:
+        description: |
+          "Does your task defintion use awsvpc mode or not. If so, 
+          this should be true and you should also include subnet-ids and optionally security-group-ids / assign-public-ips."
+        type: boolean
+        default: false
       subnet-ids:
         description: |
           "List of subnet ids"
@@ -147,6 +144,10 @@ commands:
                 echo "Setting --propagate-tags"
                 set -- "$@" --propagate-tags "TASK_DEFINITION"
             fi
+            if [ "<<parameters.awsvpc>>" == "true" ]; then
+                echo "Setting --network-configuration"
+                set -- "$@" --network-configuration awsvpcConfiguration="{subnets=[<<parameters.subnet-ids>>],securityGroups=[<<parameters.security-group-ids>>],assignPublicIp=<<parameters.assign-public-ip>>}"
+            fi
 
             echo $@
 
@@ -155,7 +156,6 @@ commands:
               --task-definition <<parameters.task-definition>> \
               --count <<parameters.count>> \
               --launch-type <<parameters.launch-type>> \
-              --network-configuration awsvpcConfiguration="{subnets=[<<parameters.subnet-ids>>],securityGroups=[<<parameters.security-group-ids>>],assignPublicIp=<<parameters.assign-public-ip>>}" \
               "$@" 
 jobs:
   run-task:
@@ -165,9 +165,9 @@ jobs:
       - run-task:
           task-definition: orb
           started-by: cdiaz
-          cluster: testing
+          cluster: testing-ec2
           launch-type: EC2
-          subnet-ids: subnet-70ffa93b,subnet-bcc04b93
+          #subnet-ids: subnet-70ffa93b,subnet-bcc04b93
           enable-ecs-managed-tags: true
           propagate-tags: true
           tags: key=one,value=one
