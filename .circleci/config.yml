@@ -116,8 +116,8 @@ commands:
           name: Run Task
           command: |
             if [ "<<parameters.launch-type>>" == "FARGATE" ]; then
-                echo "Setting --launch-type"
-                set -- "$@" --launch-type "<<parameters.launch-type>>"
+                echo "Setting --platform-version"
+                set -- "$@" --platform-version "<<parameters.platform-version>>"
             fi
             if [ ! -z "<<parameters.started-by>>" ]; then
                 echo "Setting --started-by"
@@ -154,7 +154,7 @@ commands:
               --cluster <<parameters.cluster>> \
               --task-definition <<parameters.task-definition>> \
               --count <<parameters.count>> \
-              --platform-version <<parameters.platform-version>> \
+              --launch-type <<parameters.launch-type>> \
               --network-configuration awsvpcConfiguration="{subnets=[<<parameters.subnet-ids>>],securityGroups=[<<parameters.security-group-ids>>],assignPublicIp=<<parameters.assign-public-ip>>}" \
               "$@" 
 jobs:
