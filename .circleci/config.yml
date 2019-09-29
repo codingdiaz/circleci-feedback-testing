@@ -49,7 +49,7 @@ commands:
         default: ""
       placement-strategy:
         description: |
-          "The placement strategy objects to use for the task. You can  specify
+          "The placement strategy objects to use for the task. You can specify
           a maximum of five strategy rules per task. Expected format: type=string,field=string."
         type: string
         default: ""
@@ -57,7 +57,7 @@ commands:
         description: |
           The launch type on which to run your task. For more information, see
           Amazon ECS Launch Types in  the  Amazon Elastic Container Service
-          Developer Guide . Possible values EC2, FARGATE.
+          Developer Guide. Possible values EC2, FARGATE.
         type: enum
         enum: ["FARGATE", "EC2"]
         default: "FARGATE"
@@ -75,12 +75,12 @@ commands:
         default: false
       subnet-ids:
         description: |
-          "List of subnet ids"
+          "List of subnet ids separated by commas. Expected Format: subnet-70faa93b,subnet-bcc54b93"
         type: string
         default: ""
       security-group-ids:
         description: |
-          "List of security group ids"
+          "List of security group ids separated by commas. Expected Format: subnet-70faa93b,subnet-bcc54b93"
         type: string
         default: ""
       assign-public-ip:
@@ -168,6 +168,7 @@ jobs:
           started-by: cdiaz
           cluster: testing-ec2
           launch-type: EC2
+          awsvpc: true
           #subnet-ids: subnet-70ffa93b,subnet-bcc04b93
           enable-ecs-managed-tags: true
           propagate-tags: true
