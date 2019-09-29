@@ -115,17 +115,17 @@ commands:
               --cluster <<parameters.cluster>> \
               --task-definition <<parameters.task-definition>> \
               --count <<parameters.count>> \
-              #--started-by <<parameters.started-by>> \
+              --launch-type <<parameters.launch-type>> \
+              --platform-version <<parameters.platform-version>> \
+              --network-configuration awsvpcConfiguration="{subnets=[<<parameters.subnet-ids>>],securityGroups=[],assignPublicIp=<<parameters.assign-public-ip>>}"
+              #--enable-ecs-managed-tags <<parameters.enable-ecs-managed-tags>> \
+              #--propagate-tags <<parameters.propagate-tags>>
+      
+
+                    #--started-by <<parameters.started-by>> \
               #--group <<parameters.group>> \
               #--placement-constraints <<parameters.placement-constraints>> \
               #--placement-strategy <parameters.placement-strategy>> \
-              --launch-type <<parameters.launch-type>> \
-              --platform-version <<parameters.platform-version>> \
-              --network-configuration awsvpcConfiguration="{subnets=[<<parameters.subnet-ids>>],securityGroups=[],assignPublicIp=<<parameters.assign-public-ip>>}"  \
-              #--tags <<parameters.tags>> \
-              --enable-ecs-managed-tags <<parameters.enable-ecs-managed-tags>> \
-              --propagate-tags <<parameters.propagate-tags>>
-      
 #     steps:
 #       - run:
 #           name: Register new task definition
