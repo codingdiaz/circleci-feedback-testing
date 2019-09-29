@@ -164,15 +164,15 @@ jobs:
     steps:
       - aws-cli/setup
       - run-task:
-          task-definition: ec2
+          task-definition: orb
           started-by: cdiaz
-          cluster: testing-ec2
-          launch-type: EC2
-          awsvpc: false
-          #subnet-ids: subnet-70ffa93b,subnet-bcc04b93
-          #enable-ecs-managed-tags: true
-          #propagate-tags: true
-          #tags: key=one,value=one
+          cluster: testing
+          launch-type: FARGATE
+          awsvpc: true
+          subnet-ids: subnet-70ffa93b,subnet-bcc04b93
+          enable-ecs-managed-tags: true
+          propagate-tags: true
+          tags: key=one,value=one
 workflows:
   version: 2
   run-task:
