@@ -132,7 +132,7 @@ commands:
                 echo "Setting --placement-constraints"
                 set -- "$@" --placement-constraints "<<parameters.placement-constraints>>"
             fi
-            if [ ! -z "<parameters.placement-strategy>>" ]; then
+            if [ ! -z "<<parameters.placement-strategy>>" ]; then
                 echo "Setting --placement-strategy"
                 set -- "$@" --placement-strategy "<<parameters.placement-strategy>>"
             fi
