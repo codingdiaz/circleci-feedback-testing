@@ -13,9 +13,16 @@ jobs:
     steps:
       - run: sleep 5
       - run: asdf
+  test3:
+    docker:
+      - image: circleci/golang:1.12
+    steps:
+      - run: sleep 20
+      - run: asdf
 workflows:
   version: 2
   test:
     jobs:
       - test
       - test2
+      - test3
