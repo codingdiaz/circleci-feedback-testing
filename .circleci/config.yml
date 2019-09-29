@@ -80,6 +80,11 @@ commands:
         description: |
           "List of subnet ids"
         type: string
+      security-group-ids:
+        description: |
+          "List of security group ids"
+        type: string
+        default: ""
       assign-public-ip:
         description: |
           "Assign a public IP or not"
@@ -97,7 +102,7 @@ commands:
         description: |
           "Specifies whether to enable Amazon ECS managed tags for the task."
         type: boolean
-        default: true
+        default: false
       propagate-tags:
         description: |
           "Specifies  whether to propagate the tags from the task definition to
@@ -105,7 +110,7 @@ commands:
           Tags can only be propagated to the task during task creation. To add
           tags to a task after task creation, use the  TagResource API action."
         type: boolean
-        default: true
+        default: false
     steps:
       - run: echo "Hello"
       - run:
@@ -117,8 +122,9 @@ commands:
               --count <<parameters.count>> \
               --launch-type <<parameters.launch-type>> \
               --platform-version <<parameters.platform-version>> \
-              --network-configuration awsvpcConfiguration="{subnets=[<<parameters.subnet-ids>>],securityGroups=[],assignPublicIp=<<parameters.assign-public-ip>>}"
-              #--enable-ecs-managed-tags <<parameters.enable-ecs-managed-tags>> \
+              --network-configuration awsvpcConfiguration="{subnets=[<<parameters.subnet-ids>>],securityGroups=[<<parameters.security-group-ids>>],assignPublicIp=<<parameters.assign-public-ip>>}" \
+              --enable-ecs-managed-tags <<parameters.enable-ecs-managed-tags>> \
+              # need to dynamically add this based on boolean to be "TASK_DEFINITION"
               #--propagate-tags <<parameters.propagate-tags>>
       
 
