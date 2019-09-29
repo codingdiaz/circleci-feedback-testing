@@ -67,15 +67,15 @@ commands:
           specified for tasks using the Fargate launch type."
         type: string
         default: "LATEST"
-      network-configuration:
-        description: |
-          The network  configuration for the task. This parameter is required
-          for task definitions that use the awsvpc network mode to receive
-          their own elastic network interface, and it is not supported for
-          other network modes. For more information, see Task Networking  in
-          the Amazon Elastic Container Service Developer Guide .
-        type: string
-        default: ""
+      # network-configuration:
+      #   description: |
+      #     The network  configuration for the task. This parameter is required
+      #     for task definitions that use the awsvpc network mode to receive
+      #     their own elastic network interface, and it is not supported for
+      #     other network modes. For more information, see Task Networking  in
+      #     the Amazon Elastic Container Service Developer Guide .
+      #   type: string
+      #   default: ""
       subnet-ids:
         description: |
           "List of subnet ids"
@@ -163,6 +163,7 @@ jobs:
           task-definition: orb
           started-by: cdiaz
           cluster: testing
+          launch-type: EC2
           subnet-ids: subnet-70ffa93b,subnet-bcc04b93
           enable-ecs-managed-tags: true
           propagate-tags: true
