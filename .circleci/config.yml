@@ -132,12 +132,11 @@ commands:
             #     echo "Setting --placement-strategy"
             #     set -- "$@" --placement-strategy "<parameters.placement-strategy>>"
             # fi
-            echo <<parameters.enable-ecs-managed-tags>>
-            if [ "<parameters.enable-ecs-managed-tags>>" = "true" ]; then
+            if [ "<parameters.enable-ecs-managed-tags>>" == "true" ]; then
                 echo "Setting --enable-ecs-managed-tags"
                 set -- "$@" --enable-ecs-managed-tags
             fi
-            if [ "parameters.propagate-tags>>" = "true" ]; then
+            if [ "parameters.propagate-tags>>" == "true" ]; then
                 echo "Setting --propagate-tags"
                 set -- "$@" --propagate-tags "TASK_DEFINITION"
             fi
