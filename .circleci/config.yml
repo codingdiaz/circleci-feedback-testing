@@ -112,7 +112,6 @@ commands:
         type: boolean
         default: false
     steps:
-      - run: echo "Hello"
       - run:
           name: Run Task
           command: |
@@ -167,6 +166,7 @@ jobs:
           subnet-ids: subnet-70ffa93b,subnet-bcc04b93
           enable-ecs-managed-tags: true
           propagate-tags: true
+          tags: key=one,value=one
 workflows:
   version: 2
   run-task:
