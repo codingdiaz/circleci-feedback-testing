@@ -141,6 +141,8 @@ commands:
             #     set -- "$@" --propagate-tags "TASK_DEFINITION"
             # fi
 
+            echo $@
+
             aws ecs run-task \
               --cluster <<parameters.cluster>> \
               --task-definition <<parameters.task-definition>> \
@@ -156,6 +158,7 @@ jobs:
       - aws-cli/setup
       - run-task:
           task-definition: orb
+          started-by: cdiaz
           cluster: testing
           subnet-ids: subnet-70ffa93b,subnet-bcc04b93
           enable-ecs-managed-tags: true
