@@ -80,7 +80,7 @@ commands:
         default: ""
       security-group-ids:
         description: |
-          "List of security group ids separated by commas. Expected Format: subnet-70faa93b,subnet-bcc54b93"
+          "List of security group ids separated by commas. Expected Format: sg-010a460f7f442fa75,	sg-010a420f7faa5fa75"
         type: string
         default: ""
       assign-public-ip:
@@ -169,7 +169,7 @@ jobs:
           cluster: testing-ec2
           launch-type: EC2
           awsvpc: true
-          #subnet-ids: subnet-70ffa93b,subnet-bcc04b93
+          subnet-ids: subnet-70ffa93b,subnet-bcc04b93
           enable-ecs-managed-tags: true
           propagate-tags: true
           tags: key=one,value=one
